@@ -1,0 +1,188 @@
+$icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
+// bower:scss
+@import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
+// endbower
+
+$bgColor: #527FC4;
+$textColor: #fff;
+$hoverColor: $bgColor;
+$topbarColor: #263B5C;
+
+.browsehappy {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+.clearfix:before, .clearfix:after {
+	display: table;
+	content: ' ';
+}
+
+/* general styles */
+h1 {
+	text-align: center;
+	font-size: 3em;
+}
+
+h2 {
+
+}
+
+h3 {
+
+}
+
+textarea, input {
+	color: #000;
+}
+
+.button {
+	min-width: 200px;
+	height: 70px;
+	border: 2px solid #fff;
+	font-size: 25px;
+	display: inline-block;
+	text-align: center;
+	line-height: 50px;
+	padding: 10px;
+	margin: 20px;
+
+	color: $textColor;
+	text-decoration: none;
+	background: $bgColor;
+}
+
+.button:hover {
+	cursor: pointer;
+	text-decoration: none;
+
+}
+
+.button:not([disabled=disabled]):hover {
+	background: rgba(255,255,255,0.5);
+}
+
+.button[disabled=disabled] {
+	color: #E7EDF6;
+	border-color: #E7EDF6;
+}
+
+
+
+
+.center {
+	margin: 0 auto;
+	width: 50%;
+}
+
+.right {
+	float: right;
+}
+
+/* index page */
+html, body {
+  font-family: 'Open Sans', sans-serif;
+  color: $textColor;
+  background: $bgColor;
+  height: 100%;
+}
+
+.top-bar {
+	width: 100%;
+	background: $topbarColor;
+	padding: 0.4em;
+	font-size: 1.5em;
+}
+.top-bar .right {
+	float: right;
+}
+
+[ng-view] {
+	height: 100%;
+	padding: 5%;
+	text-align: center;
+}
+
+/* main page */
+.page {
+	height: 100%;
+}
+
+.step {
+	height: 20%;
+	text-align: left;
+}
+
+.two {
+	text-align: right;
+}
+
+/* choose location page */
+.angular-google-map-container {
+	height: 400px;
+	margin: 3em;
+}
+
+.search {
+	margin: 2em;
+	font-size: 2em;
+	line-height: 70px;
+	input {
+		height: 70px;
+		border-size: 2px;
+	}
+	.button {
+		margin: 0;
+		padding: 0;
+	}
+}
+
+/* question page */
+.choices {
+	text-align: center;
+}
+
+.choice {
+	display: inline-block;
+	height: 200px;
+	width: 200px;
+	background: #E6ECF6;
+	margin: 30px;
+}
+
+.choice:hover {
+	outline: 5px solid $textColor;
+	cursor: pointer;
+}
+.choice.selected {
+	outline: 5px solid $topbarColor;
+}
+
+/* login page */
+.login {
+	width: 50%;
+	margin: 0 auto;
+	height: 100%;
+}
+
+.top {
+	height: 33%;
+}
+.middle {
+	height: 33%;
+}
+.bottom {
+	height: 33%;
+}
+
+/* matches page */
+.match {
+	float: left;
+	width: 150px;
+	margin: 2em;
+}
+
+
+
