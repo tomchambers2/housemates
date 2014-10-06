@@ -1,15 +1,39 @@
 <h1>Tell us about yourself</h1>
-<h2>We'll show this to other people</h2>
+<h2>Your profile will be shown to good matches</h2>
 
-<h3>About you</h3>
-<textarea name="about" id="" cols="30" rows="10">Just a few words will do... maximum 80</textarea>
+<article class="person">
+	<img ng-src="{{picture}}" alt="Picture of {{user.displayName}}">
+	<h2>{{user.displayName}}</h2>
+	<h3>About me</h3>
+	<textarea class="bio" ng-hide="saved" name="about" ng-model="bio" placeholder="Let people know about your personality and what you're looking for"></textarea>
+	<div class="bio" ng-show="saved">{{bio}}</div>
+	<a ng-hide="saved" class="button" ng-click="saveBio()">Save</a>
+	<a ng-show="saved" href="#/matches" class="button">See my matches</a>
+</article>
 
-<section>
+<section ng-if="hasroom">
 	<h3>About your spare room</h3>
-	Price per month: <input type="text">
-	Other people in house: <input type="text">
-	Other things about the room: <input type="text">
-	Photo upload: <input type="text">
+	<table>
+		<tr>
+			<td>Price per month:</td> <td>
+				<input type="text">
+			</td>
+		</tr>
+		<tr>
+			<td>Other people in house:</td> <td>
+				<input type="text">
+			</td>
+		</tr>
+		<tr>
+			<td>Other things about the room:</td> <td>
+				<input type="text">
+			</td>
+		</tr>
+		<tr>
+			<td>Photo upload:</td> <td>
+				<input type="text">
+			</td>
+		</tr>
+	</table>
 </section>
-
-<a href="#/matches" class="button">See my matches</div>
+</article>

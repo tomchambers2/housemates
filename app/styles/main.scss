@@ -3,10 +3,11 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
 // endbower
 
-$bgColor: #527FC4;
-$textColor: #fff;
+$bgColor: #fff;
+$textColor: #000;
 $hoverColor: $bgColor;
 $topbarColor: #263B5C;
+$topbarTextColor: #fff;
 
 .browsehappy {
   margin: 0.2em 0;
@@ -38,10 +39,20 @@ textarea, input {
 	color: #000;
 }
 
+.body-content {
+	width: 75%;
+	margin: 2em auto;
+}
+@media only screen and (max-width: 991px) {
+	.body-content {
+		width: 991px;
+	}
+}
+
 .button {
 	min-width: 200px;
 	height: 70px;
-	border: 2px solid #fff;
+	border: 2px solid $textColor;
 	font-size: 25px;
 	display: inline-block;
 	text-align: center;
@@ -57,11 +68,15 @@ textarea, input {
 .button:hover {
 	cursor: pointer;
 	text-decoration: none;
+}
 
+.button.disabled {
+	border-color: #6B6B6B;
+	color: #6B6B6B;
 }
 
 .button:not([disabled=disabled]):hover {
-	background: rgba(255,255,255,0.5);
+	background: rgba(0,0,0,0.2);
 }
 
 .button[disabled=disabled] {
@@ -69,12 +84,29 @@ textarea, input {
 	border-color: #E7EDF6;
 }
 
+.button.selected {
+	border-width: 3px;
+}
+
+.error {
+	background-color: red;
+	display: inline-block;
+	padding: 5px;
+	margin: 30px;
+}
 
 
+.full-width {
+	width: 100%;
+}
 
 .center {
 	margin: 0 auto;
 	width: 50%;
+}
+
+.left {
+	float: left;
 }
 
 .right {
@@ -92,8 +124,12 @@ html, body {
 .top-bar {
 	width: 100%;
 	background: $topbarColor;
+	color: $topbarTextColor;
 	padding: 0.4em;
 	font-size: 1.5em;
+	a {
+		color: $topbarTextColor;
+	}
 }
 .top-bar .right {
 	float: right;
@@ -117,6 +153,13 @@ html, body {
 
 .two {
 	text-align: right;
+}
+
+/* choose type page */
+.options {
+	text-align: center;
+	font-size: 30px;
+	margin-top: 2em;
 }
 
 /* choose location page */
@@ -150,6 +193,11 @@ html, body {
 	width: 200px;
 	background: #E6ECF6;
 	margin: 30px;
+	text-align: center;
+	overflow: hidden;
+}
+.choice img {
+	max-width: 200px;
 }
 
 .choice:hover {
@@ -178,9 +226,37 @@ html, body {
 }
 
 /* matches page */
-.match {
-	float: left;
-	width: 150px;
+.people {
+	text-align: center;
+}
+
+.person {
+	width: 250px;
+	padding: 0;
+	background: #A8C5F3;
+	margin: 2em auto;
+	text-align: center;
+
+	p {
+		clear: both;
+	}
+	.bio {
+		width: 250px;
+		height: 150px;
+		padding: 2px;
+		margin: 1px ;
+		text-align: left;
+	}
+	img {
+		clear: both;
+	}
+	.button {
+		margin: 0 0 .5em 0;
+		width: 230px;
+	}
+}
+
+.people .person {
 	margin: 2em;
 }
 

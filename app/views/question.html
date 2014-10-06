@@ -1,13 +1,13 @@
-<h1>{{questionText}}</h1>
+<h1>{{questionText || 'Loading the first question'}}</h1>
 
-<h2>Click your favourite</h2>
+<h2 ng-if="questionText">Click your favourite</h2>
 
 <div class="choices clearfix">
-	<div class="choice" ng-repeat="choice in choices" ng-click="select($index,choice.id)" ng-class="{selected: choice.selected}">
-		<img src="http://placekitten.com/g/200/200" alt="">
+	<div class="choice" ng-repeat="answer in answers" ng-click="select($index)" ng-class="{selected: selected[$index]}">
+		<img ng-src="{{answer}}" alt="">
 	</div>
 </div>
 
-<button ng-if="choice" ng-click="nextQuestion()" ng-disabled="!choice" class="button right">Next &gt;&gt;
+<button ng-if="selected.any" ng-click="proceed(true)" ng-disabled="!selected.any" class="button right">Next &gt;&gt;
 </a>
 <a ng-if="final" href="#/login" class="button">Finish quiz</a>

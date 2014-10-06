@@ -1,0 +1,34 @@
+<h1>{{message}}</h1>
+
+<h1>Add new question</h1>
+<form>
+	<p>
+		Question text <input type="text" ng-model="question.questionText">
+	</p>
+	<p>
+		Number of answers <input type="number" ng-model="question.answersLength">
+	</p>
+	<p>
+		Question type
+		<select ng-model="question.questionType">
+			<option value="discrete">Discrete categories</option>
+			<option value="continuous">Contious options</option>
+		</select>
+	</p>
+	<p>
+		<section ng-repeat="i in [] | range:question.answersLength"><input type="text" ng-model="question.answers[$index]"></section>
+	</p>
+	<input type="submit" ng-click="addQuestion()">
+</form>
+
+<h1>Existing questions</h1>
+<ul>
+	<li ng-repeat="(key,question) in questions">
+		<p>{{question.questionText}} <a ng-click="removeQuestion(key)">Delete</a></p>
+		<p>{{question.questionType}}</p>
+		<ul>
+			<li ng-repeat="answer in question.answers track by $index">{{answer}}</li>
+		</ul>
+		    
+	</li>
+</ul>

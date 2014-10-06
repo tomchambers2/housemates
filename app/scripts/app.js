@@ -31,11 +31,15 @@ angular
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl'
       })
+      .when('/choosetype', {
+        templateUrl: 'views/choosetype.html',
+        controller: 'ChoosetypeCtrl'
+      })      
       .when('/chooselocation', {
         templateUrl: 'views/chooselocation.html',
         controller: 'ChooselocationCtrl'
       })
-      .when('/question/:id', {
+      .when('/questions/', {
         templateUrl: 'views/question.html',
         controller: 'QuestionCtrl'
       })
@@ -45,12 +49,21 @@ angular
       })
       .when('/register', {
         templateUrl: 'views/register.html',
-        controller: 'MainCtrl'
+        controller: 'RegisterCtrl',
+        resolve: {
+          'currentUser': ['login', function(login) {
+            return login.$getCurrentUser();
+          }]
+        }
       })
       .when('/matches', {
         templateUrl: 'views/matches.html',
-        controller: 'MainCtrl'
-      })      
+        controller: 'MatchesCtrl'
+      })   
+      .when('/admin', {
+        templateUrl: 'views/admin.html',
+        controller: 'AdminCtrl'
+      })            
       .otherwise({
         redirectTo: '/'
       });

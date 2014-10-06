@@ -8,56 +8,48 @@
  * Controller of the roommatesApp
  */
 angular.module('roommatesApp')
-  .controller('QuestionCtrl', function ($scope, $routeParams, $firebase) {
-    $scope.qId = parseInt($routeParams.id,10);
+  .controller('QuestionCtrl', function ($scope, $location, $routeParams, $firebase, $localStorage) {
+    $scope.selected = {};
+    if (!$localStorage.currentQuestion) {
+        $localStorage.currentQuestion = 0;
+    };
+    if (!$localStorage.answers) {
+        $localStorage.answers = {};
+    };
 
     var ref = new Firebase('https://housemates.firebaseio.com/questions/');
     var sync = $firebase(ref);
 
-    var questions = sync.$asObject();
+    var questions = sync.$asArray();
     questions.$loaded().then(function() {
-        $scope.questionText = questions.saturdayNight.questionText;
-    })
+        $scope.proceed(false);
+    });
 
-    //load that question from database and populate page
-    //check if last question, then link should be to login
-
-    $scope.nextQuestion = function() {
-        $scope.qId++;
-        $scope.choice = null;
-        $scope.choices = null;
-        $scope.questionText = 'What is your ideal Saturday night?';
-        $scope.questionType = 'choice';
+    var loadNewQuestion = function(index) {
+        $scope.questionText = questions[index].questionText;
+        $scope.answers = questions[index].answers;
     }
 
-    $scope.questionText = 'What is your ideal Saturday night?';
-    $scope.questionType = 'choice';
-    $scope.choices = [
-    	{
-    		id: 1,
-    		imagePath: '',		
-    	},
-    	{
-    		id: 2,
-    		imagePath: '',		
-    	},
-    	{
-    		id: 3,
-    		imagePath: '',		
-    	},
-    	{
-    		id: 4,
-    		imagePath: '',		
-    	},
-    ];
+    $scope.proceed = function(increment) {
+        if (increment) {
+            $localStorage.currentQuestion++;
+        };
+        if ($localStorage.currentQuestion < questions.length) {
+            $scope.selected = {};
+            loadNewQuestion($localStorage.currentQuestion);
+        } else {
+            $location.path('/login');
+        }
+    }
 
-    $scope.select = function(index, id) {
-    	//save choice into localstorage
-    	$scope.choice = id;
+    $scope.select = function(index) {
+        $scope.selected.any = true;
 
-    	for (var i = 0; i < $scope.choices.length; i++) {
-    		$scope.choices[i].selected = false;
+    	for (var i = 0; i < $scope.answers.length; i++) {
+    		$scope.selected[i] = false;
     	}
-    	$scope.choices[index].selected = true;
+    	$scope.selected[index] = true;
+
+        $localStorage.answers[questions[$localStorage.currentQuestion].$id] = index;
     }
   });
